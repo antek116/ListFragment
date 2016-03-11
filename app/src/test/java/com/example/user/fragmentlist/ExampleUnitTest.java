@@ -1,4 +1,4 @@
-package com.example.user.listfragment;
+package com.example.user.fragmentlist;
 
 import org.junit.Test;
 

@@ -1,6 +1,6 @@
 package com.example.user.fragmentlist;
 
-import android.graphics.drawable.Drawable;
+
 
 /**
  *
@@ -9,14 +9,6 @@ import android.graphics.drawable.Drawable;
 public class Item {
     private String header;
     private String imageId;
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
-
-    public void setImage(String image) {
-        this.imageId = image;
-    }
 
     public String getHeader() {
 

@@ -1,7 +1,6 @@
 package com.example.user.fragmentlist;
 
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  *
@@ -25,7 +22,6 @@ public class DescriptionFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Object arg = getArguments().get("imgId");
         header = getArguments().getString("headerText");
         imageName = getArguments().getString("imageName");
 

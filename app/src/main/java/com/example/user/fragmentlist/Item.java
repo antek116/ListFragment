@@ -8,13 +8,13 @@ import android.graphics.drawable.Drawable;
  */
 public class Item {
     private String header;
-    private int imageId;
+    private String imageId;
 
     public void setHeader(String header) {
         this.header = header;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.imageId = image;
     }
 
@@ -23,11 +23,11 @@ public class Item {
         return header;
     }
 
-    public int getImageId() {
+    public String getImageId() {
         return imageId;
     }
 
-    public Item(int image, String header) {
+    public Item(String image, String header) {
         this.imageId = image;
         this.header = header;
     }

@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//import android.widget.ImageView;
+
 
 import java.util.List;
 
@@ -44,10 +44,17 @@ public class MainActivity extends AppCompatActivity implements ListItemFragment.
     }
 
     @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+      listFragment = getSupportFragmentManager().getFragment(savedInstanceState,"listFragment");
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
     public void onHeaderSelected(int position, List<Item> values) {
 
         Bundle bundle = new Bundle();
-        bundle.putInt("imgId", values.get(position).getImageId());
+            bundle.putString("imageName", values.get(position).getImageId());
+        bundle.putString("headerText", values.get(position).getHeader());
         DescriptionFragment fragment = new DescriptionFragment();
         fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

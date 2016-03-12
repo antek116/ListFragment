@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -19,28 +20,33 @@ import java.util.Objects;
 public class DescriptionFragment extends Fragment {
     final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
-    int imageId;
+    String header;
+    String imageName;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Object arg = getArguments().get("imgId");
-        imageId = Integer.parseInt(getArguments().get("imgId").toString());
-        ImageView view = (ImageView) getView().findViewById(R.id.descriptionImage);
-        view.setImageDrawable(getResources().getDrawable(R.drawable.ananas));
+        header = getArguments().getString("headerText");
+        imageName = getArguments().getString("imageName");
 
-        int x = 0;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        View view = inflater.inflate(R.layout.item_description,container,false);
+        TextView descriptionTextView = (TextView) view.findViewById(R.id.descriptionTextView);
+        descriptionTextView.setText(header);
+        ImageView imageView = (ImageView) view.findViewById(R.id.descriptionImage);
+        ImageLoader loader = new ImageLoader(imageView);
+        MyTaskParams parameters = new MyTaskParams(getContext(),false,imageName);
+        loader.execute(parameters);
         if (savedInstanceState != null) {
             mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
         }
 
 
-        return inflater.inflate(R.layout.item_description, container, false);
+        return view;
     }
     @Override
     public void onSaveInstanceState(Bundle outState) {

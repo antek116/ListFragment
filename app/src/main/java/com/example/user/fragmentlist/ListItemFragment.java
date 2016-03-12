@@ -21,11 +21,18 @@ public class ListItemFragment extends Fragment {
     ArrayList<Item> exampleListItemList;
 
     OnHeadlineSelectedListener mCallback;
+    String[] imageName = {
+            "ananas.png",
+            "batman.jpg",
+            "bubble.jpg",
+            "road.jpg",
+            "house.jpg",
+            "superman.jpg"};
 
     // The container Activity must implement this interface so the frag can deliver messages
     public interface OnHeadlineSelectedListener {
         /** Called by HeadlinesFragment when a list item is selected */
-        public void onHeaderSelected(int position, List<Item> itemList);
+        void onHeaderSelected(int position, List<Item> itemList);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,7 +42,7 @@ public class ListItemFragment extends Fragment {
         Context context = view.getContext();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.allHeaders);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new MyAdapter(exampleListItemList, mCallback));
+        recyclerView.setAdapter(new MyAdapter(getContext(),exampleListItemList, mCallback));
         return view;
     }
 
@@ -43,17 +50,14 @@ public class ListItemFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         exampleListItemList = new ArrayList<>();
-        int[] drawableId = {
-                R.drawable.ananas,R.drawable.batman,R.drawable.bubble,R.drawable.droga,R.drawable.dom,
-                R.drawable.superman
-        };
-        int size = 0;
-        for (int i = 0; i < 20; ++i){
-            if(size == 5){
-                size = 0;
+
+        int imageNamePosition = 0;
+        for (int i = 0; i < 1000; ++i){
+            if(imageNamePosition == imageName.length){
+                imageNamePosition = 0;
             }
-            exampleListItemList.add(new Item(drawableId[size],"Jakis Title"));
-            size++;
+            exampleListItemList.add(new Item(imageName[imageNamePosition],"Picture of Number "+ i));
+            imageNamePosition++;
         }
 
     }
@@ -81,7 +85,4 @@ public class ListItemFragment extends Fragment {
         super.onDetach();
         mCallback = null;
     }
-
-
-
 }
